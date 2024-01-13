@@ -28,6 +28,7 @@ defmodule CurrencyConverterWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import CurrencyConverterWeb.ConnCase
+      import CurrencyConverter.Factory
     end
   end
 

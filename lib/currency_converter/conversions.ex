@@ -18,7 +18,7 @@ defmodule CurrencyConverter.Conversions do
 
   """
   def list_quotations_by_user_id(user_id) do
-    query = from(c in Quotation, where: (c.user_id == ^user_id))
+    query = from(c in Quotation, where: c.user_id == ^user_id)
     Repo.all(query)
   end
 

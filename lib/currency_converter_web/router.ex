@@ -7,6 +7,8 @@ defmodule CurrencyConverterWeb.Router do
 
   scope "/api", CurrencyConverterWeb do
     pipe_through :api
+
+    resources "/quotations", QuotationController, only: [:index, :create]
   end
 
   # Enable LiveDashboard in development

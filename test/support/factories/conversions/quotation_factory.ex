@@ -8,7 +8,7 @@ defmodule CurrencyConverter.Conversions.QuotationFactory do
           source_currency: "EUR",
           target_currency: "BRL",
           price: 50.234,
-          user_id: sequence(:user_id, & "#{&1}")
+          user_id: sequence(:user_id, &"#{&1}")
         }
       end
     end

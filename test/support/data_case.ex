@@ -24,6 +24,7 @@ defmodule CurrencyConverter.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import CurrencyConverter.DataCase
+      import CurrencyConverter.Factory
     end
   end
 
