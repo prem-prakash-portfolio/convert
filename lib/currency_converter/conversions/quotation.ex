@@ -1,4 +1,7 @@
 defmodule CurrencyConverter.Conversions.Quotation do
+  @moduledoc """
+  Quotation schema
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

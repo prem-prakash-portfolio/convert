@@ -1,4 +1,7 @@
 defmodule CurrencyConverter.Conversions.QuotationFactory do
+  @moduledoc """
+  Quotation factory
+  """
   defmacro __using__(_opts) do
     quote do
       def quotation_factory do
