@@ -1,5 +1,20 @@
 # CurrencyConverter
 
+## Deployment
+
+Get a free API Access Key for [ExchangeRates](https://exchangeratesapi.io/).
+
+Simple steps:
+
+1. `$ curl -L https://fly.io/install.sh | sh`
+2. `$ fly auth signup`
+5. `$ fly launch --copy-config --vm-memory 256 --yes --now`
+8. `$ fly secrets set EXCHANGE_RATES_ACCESS_KEY="your ExchangeRates API access key"`
+
+See more about how to deploy on [Fly.io](https://hexdocs.pm/phoenix/fly.html).
+
+## Development
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
@@ -8,11 +23,3 @@ To start your Phoenix server:
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
