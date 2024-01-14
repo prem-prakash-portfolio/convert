@@ -34,8 +34,9 @@ defmodule CurrencyConverter.MixProject do
     [
       {:phoenix, "~> 1.7.10"},
       {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.10"},
-      {:postgrex, ">= 0.0.0"},
+      {:ecto_sql, "~> 3.8"},
+      {:ecto, "~> 3.8"},
+      {:etso, "~> 1.1.0", github: "prem-prakash/etso"},
       {:phoenix_live_dashboard, "~> 0.8.2"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -57,10 +58,10 @@ defmodule CurrencyConverter.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "ecto.setup"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.setup": ["ecto.create", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "ecto.migrate": ["ecto.migrate", "ecto.dump"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      "ecto.migrate": [],
+      test: ["ecto.create --quiet", "test"]
     ]
   end
 end

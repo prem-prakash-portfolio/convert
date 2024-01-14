@@ -13,20 +13,13 @@ defmodule CurrencyConverterWeb.QuotationController do
   end
 
   def create(conn, params) do
-    with {:ok, %Quotation{} = quotation} <- do_create(params) do
+    with {:ok, attrs} <- normalize(params),
+         {:ok, attrs} <- convert_and_merge(attrs),
+         {:ok, %Quotation{} = quotation} <- Conversions.create_quotation(attrs) do
       conn
       |> put_status(:created)
       |> render(:show, quotation: quotation)
     end
-  end
-
-  defp do_create(params) do
-    Repo.transact(fn ->
-      with {:ok, attrs} <- normalize(params),
-           {:ok, attrs} <- convert_and_merge(attrs) do
-        Conversions.create_quotation(attrs)
-      end
-    end)
   end
 
   defp convert_and_merge(attrs) do

@@ -16,8 +16,6 @@ defmodule CurrencyConverter.DataCase do
 
   use ExUnit.CaseTemplate
 
-  alias Ecto.Adapters.SQL.Sandbox
-
   using do
     quote do
       alias CurrencyConverter.Repo
@@ -28,19 +26,6 @@ defmodule CurrencyConverter.DataCase do
       import CurrencyConverter.DataCase
       import CurrencyConverter.Factory
     end
-  end
-
-  setup tags do
-    CurrencyConverter.DataCase.setup_sandbox(tags)
-    :ok
-  end
-
-  @doc """
-  Sets up the sandbox based on the test tags.
-  """
-  def setup_sandbox(tags) do
-    pid = Sandbox.start_owner!(CurrencyConverter.Repo, shared: not tags[:async])
-    on_exit(fn -> Sandbox.stop_owner(pid) end)
   end
 
   @doc """
