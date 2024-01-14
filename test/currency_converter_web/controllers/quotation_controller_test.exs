@@ -5,13 +5,16 @@ defmodule CurrencyConverterWeb.QuotationControllerTest do
   alias CurrencyConverter.Conversions
   alias CurrencyConverter.Repo
 
+  import Mox
+  setup :verify_on_exit!
+
   @create_attrs %{
     amount: "120.5",
     source_currency: "EUR",
     target_currency: "BRL",
     user_id: "some_user_id"
   }
-  @invalid_attrs %{price: nil, rate: nil, amount: nil, source_currency: nil, target_currency: nil, user_id: nil}
+  @invalid_attrs %{amount: nil, source_currency: nil, target_currency: nil, user_id: nil}
 
   setup %{conn: conn} do
     Repo.delete_all(Quotation)
@@ -49,6 +52,8 @@ defmodule CurrencyConverterWeb.QuotationControllerTest do
 
   describe "create conversion" do
     test "renders conversion when data is valid", %{conn: conn} do
+      expect(CurrencyConverterServices.ExchangeRatesAPI.Mock, :get_rate, fn "EUR", "BRL" -> {:ok, 5.322059} end)
+
       conn = post(conn, ~p"/api/quotations", @create_attrs)
 
       assert %{

@@ -13,7 +13,11 @@ defmodule CurrencyConverterServices.ExchangeRatesAPI do
   @spec get_rate(source_currency, target_currency) :: {:ok, rate} | {:error, any()}
   def get_rate(source_currency, target_currency), do: impl().get_rate(source_currency, target_currency)
 
-  defp impl, do: Application.get_env(:currency_converter, __MODULE__, CurrencyConverterServices.ExchangeRatesAPI.HTTP)
+  defp impl,
+    do:
+      :currency_converter
+      |> Application.get_env(__MODULE__)
+      |> Keyword.get(:adapter, CurrencyConverterServices.ExchangeRatesAPI.HTTP)
 
   @spec convert(source_currency, target_currency, amount) :: {:ok, {rate, price}} | {:error, any()}
   def convert(source_currency, target_currency, amount) do

@@ -44,6 +44,7 @@ defmodule CurrencyConverter.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
       {:ex_machina, "~> 2.7.0", only: :test},
+      {:mox, "~> 1.0", only: :test},
       {:req, "~> 0.4.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
