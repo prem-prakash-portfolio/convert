@@ -3,15 +3,19 @@ defmodule CurrencyConverterServices.ExchangeRatesAPI.HTTPTest do
 
   @moduletag :external_api
 
+  import ExUnit.CaptureLog
+
   alias CurrencyConverterServices.ExchangeRatesAPI.HTTP
   alias CurrencyConverterServices.ExchangeRatesAPI
 
-  describe "tests" do
+  describe "CurrencyConverterServices.ExchangeRatesAPI.HTTP.get_rate" do
     test "when access key is invalid" do
       backup_access_key = get_access_key()
       put_access_key("")
 
-      assert {:error, "Invalid response from ExchangeRates service"} == HTTP.get_rate("EUR", "BRL")
+      {result, log} = with_log(fn -> HTTP.get_rate("EUR", "BRL") end)
+      assert {:error, "Invalid response from ExchangeRates service"} == result
+      assert log =~ "CurrencyConverterServices.ExchangeRatesAPI.HTTP - Invalid response from"
 
       put_access_key(backup_access_key)
     end
@@ -21,7 +25,9 @@ defmodule CurrencyConverterServices.ExchangeRatesAPI.HTTPTest do
     end
 
     test "with invalid currency" do
-      assert {:error, "Invalid response from ExchangeRates service"} == HTTP.get_rate("AJO", "BRL")
+      {result, log} = with_log(fn -> HTTP.get_rate("AJO", "BRL") end)
+      assert {:error, "Invalid response from ExchangeRates service"} == result
+      assert log =~ "CurrencyConverterServices.ExchangeRatesAPI.HTTP - Invalid response from"
     end
 
     defp get_access_key do
