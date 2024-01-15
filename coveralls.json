@@ -1,0 +1,11 @@
+{
+  "coverage_options": {
+    "minimum_coverage": 90
+  },
+  "skip_files": [
+    "lib/currency_converter/release.ex",
+    "test",
+    "priv",
+    "rel"
+  ]
+}

@@ -85,6 +85,17 @@ jobs:
     - name: Compiles without warnings
       run: mix compile --warnings-as-errors
 
+    # Step: Execute the tests including external apis, only when push to main branch
+    - name: Run tests
+      if: ${{ github.event_name == 'push' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        EXCHANGE_RATES_ACCESS_KEY: ${{ secrets.EXCHANGE_RATES_ACCESS_KEY }}
+      run: mix coveralls.github --include external_api
+
     # Step: Execute the tests.
     - name: Run tests
-      run: mix test
+      if: ${{ github.event_name != 'push' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: mix coveralls.github
