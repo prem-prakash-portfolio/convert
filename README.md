@@ -2,6 +2,8 @@
 
 # CurrencyConverter
 
+The best currency converter ever
+
 [https://jaya-prakash-currency-converter.fly.dev/api/swagger/index.html](https://jaya-prakash-currency-converter.fly.dev/api/swagger/index.html)
 
 ## Development
