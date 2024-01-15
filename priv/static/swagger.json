@@ -1,0 +1,171 @@
+{
+  "basePath": "/api",
+  "definitions": {
+    "Quotation": {
+      "description": "A quotation of currency conversion",
+      "example": {
+        "amount": "123.4",
+        "price": "246.8",
+        "rate": "2.0",
+        "source_currency": "EUR",
+        "target_currency": "BRL",
+        "user_id": "some_user_id"
+      },
+      "properties": {
+        "amount": {
+          "description": "Amount",
+          "type": "decimal"
+        },
+        "price": {
+          "description": "Price",
+          "type": "decimal"
+        },
+        "rate": {
+          "description": "Rate",
+          "type": "decimal"
+        },
+        "source_currency": {
+          "description": "Source Currency",
+          "type": "string"
+        },
+        "target_currency": {
+          "description": "Target Currency",
+          "type": "string"
+        },
+        "user_id": {
+          "description": "User id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "user_id",
+        "target_currency",
+        "source_currency",
+        "amount",
+        "rate",
+        "price"
+      ],
+      "title": "Quotation",
+      "type": "object"
+    },
+    "QuotationRequestInput": {
+      "description": "Request a quotation of currency conversion",
+      "example": {
+        "amount": "123.4",
+        "source_currency": "EUR",
+        "target_currency": "BRL",
+        "user_id": "some_user_id"
+      },
+      "properties": {
+        "amount": {
+          "description": "Amount",
+          "type": "decimal"
+        },
+        "source_currency": {
+          "description": "Source Currency",
+          "type": "string"
+        },
+        "target_currency": {
+          "description": "Target Currency",
+          "type": "string"
+        },
+        "user_id": {
+          "description": "User id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "user_id",
+        "target_currency",
+        "source_currency",
+        "amount"
+      ],
+      "title": "Quotation Request Input",
+      "type": "object"
+    },
+    "Quotations": {
+      "description": "A collection of Quotations",
+      "items": {
+        "$ref": "#/definitions/Quotation"
+      },
+      "title": "Quotations",
+      "type": "array"
+    }
+  },
+  "info": {
+    "title": "Currency Converter",
+    "version": "1.0"
+  },
+  "paths": {
+    "/quotations": {
+      "post": {
+        "description": "Request a quotation of currency conversion",
+        "operationId": "CurrencyConverterWeb.QuotationController.create",
+        "parameters": [
+          {
+            "description": "The quotation request",
+            "in": "body",
+            "name": "data",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuotationRequestInput"
+            },
+            "x-example": {
+              "amount": "120.5",
+              "source_currency": "EUR",
+              "target_currency": "BRL",
+              "user_id": "some_user_id"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Quotation"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Quotation"
+        ]
+      }
+    },
+    "/quotations?user_id={user_id}": {
+      "get": {
+        "description": "List quotations per user",
+        "operationId": "CurrencyConverterWeb.QuotationController.index",
+        "parameters": [
+          {
+            "description": "User Id",
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "type": "string",
+            "x-example": "some_user_id"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Quotations"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Quotation"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0"
+}

@@ -2,6 +2,8 @@
 
 # CurrencyConverter
 
+[https://jaya-prakash-currency-converter.fly.dev/api/swagger/index.html](https://jaya-prakash-currency-converter.fly.dev/api/swagger/index.html)
+
 ## Development
 
 To start your Phoenix server:

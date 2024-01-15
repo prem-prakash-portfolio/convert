@@ -56,7 +56,9 @@ defmodule CurrencyConverter.MixProject do
       {:mox, "~> 1.0", only: :test},
       {:req, "~> 0.4.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.18", only: :test}
+      {:excoveralls, "~> 0.18", only: :test},
+      {:phoenix_swagger, "~> 0.8"},
+      {:ex_json_schema, "~> 0.5"}
     ]
   end
 
